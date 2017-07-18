@@ -1,0 +1,16 @@
+<article class="panel panel-default">
+  <div class="panel-body">
+    <h4>{{ poem.title }}</h4>
+    {{ poem.content }}
+  </div>
+  <footer class="panel-footer">
+    <div class="author">
+      {{ poem.username }}
+    </div>
+    <div class="config" *ngIf="belongsToUser()">
+      <a (click)="onEdit()">Edit</a>
+      &nbsp; &nbsp;
+      <a (click)="onDelete()">Delete</a>
+    </div>
+  </footer>
+</article>
