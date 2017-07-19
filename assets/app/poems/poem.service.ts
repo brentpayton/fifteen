@@ -24,15 +24,18 @@ export class PoemService {
         const result = response.json();
         const poem = new Poem(
           result.obj.content,
-          result.user.firstName,
+          result.obj.user.firstName,
           result.obj._id,
-          result.user.id);
+          result.obj.user.id);
         this.poems.push(poem);
         return poem;
       })
       .catch((error: Response) => {
+        console.log(error);
         this.errorService.handleError(error.json());
         return Observable.throw(error.json())
+        // this.errorService.handleError(error);
+        // return Observable.throw(error)
       });
   }
 
