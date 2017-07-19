@@ -1,8 +1,8 @@
 export class Poem {
   constructor (
+     public username: string,
+     public title: string,
      public content: string,
-     public title?: string,
-     public username?: string,
      public poemId?: string,
      public userId?: string)
   {}

@@ -23,9 +23,9 @@ export class PoemService {
       .map((response: Response) => {
         const result = response.json();
         const poem = new Poem(
-          result.obj.content,
-          'Title from poem.service',
           result.obj.user.firstName,
+          result.obj.title,
+          result.obj.content,
           result.obj._id,
           result.obj.user.id);
         this.poems.push(poem);
@@ -35,6 +35,8 @@ export class PoemService {
         console.log(error);
         this.errorService.handleError(error.json());
         return Observable.throw(error.json())
+        // this.errorService.handleError(error);
+        // return Observable.throw(error)
       });
   }
 
@@ -46,6 +48,7 @@ export class PoemService {
         for (let poem of poems) {
           transformedPoems.push(new Poem(
             poem.user.firstName,
+            poem.title,
             poem.content,
             poem._id,
             poem.user._id));
