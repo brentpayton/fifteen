@@ -16,7 +16,8 @@ export class PoemInputComponent implements OnInit {
 
   onSubmit() {
     if (this.poem) {
-      // edit
+      // Editing
+      this.poem.title = this.myForm.value.title;
       this.poem.content = this.myForm.value.content;
       this.poemService.updatePoem(this.poem)
         .subscribe(
@@ -24,8 +25,11 @@ export class PoemInputComponent implements OnInit {
         );
       this.poem = null;
     } else {
-      // create
-      const poem = new Poem('Poet (hard-coded)', 'Title (hard-coded)', this.myForm.value.content);
+      // Creating
+      const poem = new Poem(
+        'Poet (placeholder)',
+        this.myForm.value.title,
+        this.myForm.value.content);
       this.poemService.addPoem(poem)
         .subscribe(
           data => console.log(data),
@@ -46,6 +50,7 @@ export class PoemInputComponent implements OnInit {
     );
 
     this.myForm = new FormGroup({
+      title: new FormControl(null, Validators.required),
       content: new FormControl(null, Validators.required)
     });
   }

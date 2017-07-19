@@ -8,7 +8,7 @@ import { Message } from './message.model';
   selector: 'app-message-input',
   templateUrl: './message-input.component.html'
 })
-export class MessageInputComponent implements OnInit{
+export class MessageInputComponent implements OnInit {
   message: Message;
   myForm: FormGroup;
 
@@ -25,7 +25,9 @@ export class MessageInputComponent implements OnInit{
       this.message = null;
     } else {
       // Creating
-      const message = new Message(this.myForm.value.content, 'Brent');
+      const message = new Message(
+        this.myForm.value.content,
+        'Brent');
       this.messageService.addMessage(message)
         .subscribe(
           data => console.log(data),

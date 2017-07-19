@@ -32,7 +32,6 @@ export class PoemComponent {
   }
 
   onDelete() {
-    console.log(this.poem);
     this.poemService.deletePoem(this.poem)
       .subscribe(
         result => console.log(result)

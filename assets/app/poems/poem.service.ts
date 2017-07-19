@@ -35,8 +35,6 @@ export class PoemService {
         console.log(error);
         this.errorService.handleError(error.json());
         return Observable.throw(error.json())
-        // this.errorService.handleError(error);
-        // return Observable.throw(error)
       });
   }
 
