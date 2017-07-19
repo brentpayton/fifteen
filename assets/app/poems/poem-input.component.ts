@@ -25,7 +25,8 @@ export class PoemInputComponent implements OnInit {
       this.poem = null;
     } else {
       // create
-      const poem = new Poem('Poet (hard-coded)', 'Title (hard-coded)', this.myForm.value.content);
+      // const poem = new Poem('Poet', 'Title', this.myForm.value.content);
+      const poem = new Poem(this.myForm.value.content);
       this.poemService.addPoem(poem)
         .subscribe(
           data => console.log(data),
