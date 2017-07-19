@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { MessageService } from './message.service';
 import { Message } from './message.model';
@@ -10,13 +10,14 @@ import { Message } from './message.model';
 })
 export class MessageInputComponent implements OnInit{
   message: Message;
+  myForm: FormGroup;
 
   constructor(private messageService: MessageService) {}
 
-  onSubmit(form: NgForm) {
+  onSubmit() {
     if (this.message ) {
       // Editing
-      this.message.content = form.value.content;
+      this.message.content = this.myForm.value.content;
       this.messageService.updateMessage(this.message)
         .subscribe(
           result => console.log(result)
@@ -24,25 +25,35 @@ export class MessageInputComponent implements OnInit{
       this.message = null;
     } else {
       // Creating
-      const message = new Message(form.value.content, 'Brent');
+      const message = new Message(this.myForm.value.content, 'Brent');
       this.messageService.addMessage(message)
         .subscribe(
           data => console.log(data),
           error => console.error(error)
         );
     }
-    form.resetForm();
+    this.myForm.reset();
   }
 
-  onClear(form: NgForm) {
-    this.message = null;
-    form.resetForm();
+  // onClear(form: NgForm) {
+  //   this.message = null;
+  //   form.resetForm();
+  // }
+
+  onClear() {
+    // this.message = null;
+    this.myForm.reset();
+    console.log('Form reset');
   }
 
   ngOnInit() {
     this.messageService.messageIsEdit.subscribe(
       (message: Message) => this.message = message
     );
+
+    this.myForm = new FormGroup({
+      content: new FormControl(null, Validators.required)
+    });
   }
 
 }

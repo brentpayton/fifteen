@@ -1,5 +1,5 @@
 <div class="col-md-8 col-md-offset-2">
-  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="content">Message Content</label>
       <input
@@ -7,11 +7,14 @@
         id="content"
         class="form-control"
         #input
-        [ngModel]="message?.content"
         name="content"
+        formControlName="content"
         required>
     </div>
     <button type="button" class="btn btn-danger" (click)="onClear(f)">Clear</button>
-    <button class="btn btn-primary" type="submit">Save</button>
+    <button
+      class="btn btn-primary"
+      type="submit"
+      [disabled]="!myForm.valid">Save</button>
   </form>
 </div>
