@@ -8,10 +8,10 @@
   <footer class="panel-footer">
     <div class="row">
       <div class="col-sm-4">
-          <strong>Started by {{ poem.username }}</strong>
+          <strong>{{ poem.username }}</strong>
       </div>
       <div class="col-sm-4 col-sm-offset-4">
-        Created {{ poem.createdAt | date:'short' }}
+        {{ poem.createdAt | date:'short' }}
       </div>
     </div>
     <div>

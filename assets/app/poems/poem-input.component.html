@@ -1,34 +1,35 @@
-<div class="col-md-8 col-md-offset-2">
-  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="title">Title</label>
-      <input
-        type="text"
-        id="title"
-        class="form-control"
-        [ngModel]="poem?.title"
-        #input
-        name="title"
-        formControlName="title"
-        required>
-    </div>
-    <div class="form-group">
-      <label for="content">Poem</label>
-      <input
-        type="text"
-        id="content"
-        class="form-control"
-        [ngModel]="poem?.content"
-        #input
-        name="content"
-        formControlName="content"
-        required>
-    </div>
-    <button type="button" class="btn btn-danger" (click)="onClear()">Clear</button>
-    <button
-      class="btn btn-primary"
-      type="submit"
-      [disabled]="!myForm.valid">Save</button>
-  </form>
-
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          id="title"
+          class="form-control"
+          [ngModel]="poem?.title"
+          #input
+          name="title"
+          formControlName="title"
+          required>
+      </div>
+      <div class="form-group">
+        <label for="content">Poem</label>
+        <input
+          type="text"
+          id="content"
+          class="form-control"
+          [ngModel]="poem?.content"
+          #input
+          name="content"
+          formControlName="content"
+          required>
+      </div>
+      <button type="button" class="btn btn-danger" (click)="onClear()">Clear</button>
+      <button
+        class="btn btn-primary"
+        type="submit"
+        [disabled]="!myForm.valid">Save</button>
+    </form>
+  </div>
 </div>
