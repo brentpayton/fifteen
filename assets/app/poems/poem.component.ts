@@ -10,7 +10,6 @@ import { PoemService } from './poem.service';
     .author {
       display: inline-block;
       font-style: italic;
-      font-size: 12px;
       width: 80%;
     }
     .config {
@@ -18,6 +17,10 @@ import { PoemService } from './poem.service';
       text-align: right;
       font-size: 12px;
       width: 19%;
+    }
+    .info {
+      display: inline-block;
+      font-style: italic;      
     }
     `]
 })

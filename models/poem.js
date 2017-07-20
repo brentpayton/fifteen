@@ -10,6 +10,9 @@ var schema = new Schema({
   createdAt: {type: Date, required: false},
   isComplete: {type: Boolean, default: false, required: false},
   isHidden: {type: Boolean, default: false, required: false}
+},
+{
+  timestamps: true
 });
 
 schema.post('remove', function(poem) {

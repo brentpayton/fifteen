@@ -1,16 +1,30 @@
-<article class="panel panel-default">
-  <div class="panel-body">
-    <h4>{{ poem.title }}</h4>
-    {{ poem.content }}
+<div class="panel panel-default">
+  <div class="panel-heading">
+      <h3>
+        {{ poem.title }}
+      </h3>
   </div>
+  <div class="panel-body">{{ poem.content }}</div>
   <footer class="panel-footer">
-    <div class="author">
-      {{ poem.username }}
+    <div class="row">
+      <div class="col-sm-4">
+          <strong>Started by {{ poem.username }}</strong>
+      </div>
+      <div class="col-sm-4 col-sm-offset-4">
+        Created {{ poem.createdAt | date:'short' }}
+      </div>
     </div>
-    <div class="config" *ngIf="belongsToUser()">
-      <a (click)="onEdit()">Edit</a>
-      &nbsp;
-      <a (click)="onDelete()">Delete</a>
+    <div>
+      <span class="info">
+        Complete? {{ poem.isComplete }}
+      </span>
+      <span class="info">
+        Hidden? {{ poem.isHidden }}
+      </span>
+    </div>
+    <div class="buttons" *ngIf="belongsToUser()">
+        <button type="button" class="btn btn-primary" (click)="onEdit()">Edit</button>
+        <button type="button" class="btn btn-danger" (click)="onDelete()">Delete</button>
     </div>
   </footer>
-</article>
+</div>

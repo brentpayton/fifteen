@@ -26,6 +26,9 @@ export class PoemService {
           result.obj.user.firstName,
           result.obj.title,
           result.obj.content,
+          result.obj.createdAt,
+          result.obj.isComplete,
+          result.obj.isHidden,
           result.obj._id,
           result.obj.user.id);
         this.poems.push(poem);
@@ -48,6 +51,9 @@ export class PoemService {
             poem.user.firstName,
             poem.title,
             poem.content,
+            poem.createdAt,
+            poem.isComplete,
+            poem.isHidden,
             poem._id,
             poem.user._id));
         }
