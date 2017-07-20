@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
         <app-message-input></app-message-input>
+        <hr />
         <app-message-list></app-message-list>
       </div>
     </div>
