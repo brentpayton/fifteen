@@ -55,4 +55,29 @@ router.post('/signin', function(req, res, next) {
   });
 });
 
+// Retrieve details about the logged-in user.
+// The logged-in user is determined by using the user id from JWT.
+router.get('/current/:userId', function(req, res, next) {
+  User.findOne({'_id' : req.params.userId}, 'firstName')
+  .populate('user', 'firstName')
+  .exec(function(err, user) {
+    if (err) {
+      return res.status(500).json({
+        title: 'An error occurred',
+        error: err
+      });
+    } else if (!user) {
+      res.status(500).json({
+        message: 'User not found',
+        error: err
+      });
+    } else {
+      res.status(200).json({
+        message: 'Success',
+        obj: user
+      });
+    }
+  });
+
+});
 module.exports = router;

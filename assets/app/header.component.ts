@@ -11,7 +11,14 @@ import { Component } from '@angular/core'
           <li routerLinkActive="active"><a [routerLink]="['/auth']">Authentication</a></li>
         </ul>
       </nav>
+      <nav class="col-md-2">{{ getUsername }}</nav>
     </header>
   `
 })
-export class HeaderComponent{}
+export class HeaderComponent{
+
+  // getUsername = 'test';
+
+
+
+}

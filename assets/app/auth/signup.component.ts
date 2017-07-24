@@ -6,7 +6,8 @@ import { User } from './user.model';
 
 @Component({
     selector:  'app-signup',
-    templateUrl: './signup.component.html'
+    templateUrl: './signup.component.html',
+    providers: [AuthService]
 })
 
 export class SignupComponent implements OnInit {
@@ -35,6 +36,13 @@ export class SignupComponent implements OnInit {
           email: new FormControl(null, Validators.required),
           password: new FormControl(null, Validators.required)
       });
+  }
+
+  username(): string {
+    // this.getUsername = this.authService.getUsername();
+    // return this.getUsername;
+    return 'test';
+
   }
 
 }
