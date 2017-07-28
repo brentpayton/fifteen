@@ -21,21 +21,16 @@ export class SigninComponent {
     this.authService.signin(user)
       .subscribe(
         data => {
+          console.log(data);
           localStorage.setItem('token', data.token);
           localStorage.setItem('userId', data.userId);
+          localStorage.setItem('firstName', data.firstName);
           this.router.navigateByUrl('/');
         },
         error => console.error(error)
       );
     this.myForm.reset();
   }
-
-  // ngOnInit() {
-  //   this.myForm = new FormGroup({
-  //     email: new FormControl('', Validators.required),
-  //     password: new FormControl('', Validators.required)
-  //   });
-  // }
 
   ngOnInit() {
       this.myForm = new FormGroup({

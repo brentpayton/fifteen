@@ -7,8 +7,11 @@ import { User } from './user.model';
 import { ErrorService } from '../errors/error.service';
 
 @Injectable()
-export class AuthService {
+export class AuthService{
+
   constructor(private http: Http, private errorService: ErrorService) {}
+
+  user: User;
 
   signup(user: User) {
     const body = JSON.stringify(user);
@@ -39,5 +42,18 @@ export class AuthService {
   isLoggedIn() {
     return localStorage.getItem('token') !== null;
   }
+
+  // loggedInUser() {
+  //   const userId = localStorage.getItem('userId');
+  //   console.log('(Service) User ID:  '  + userId);
+  //   const response = this.http.get('http://localhost:3000/user/current/' + userId);
+  //   console.log('(Service) Response:  ' + JSON.stringify(response));
+  //   return this.http
+  //     .get('http://localhost:3000/user/current/' + userId)
+  //     .map((response: Response) => {
+  //       const user = response.json();
+  //     return user;
+  //   })
+  // };
 
 }
