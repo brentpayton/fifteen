@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from "./app.component";
 import { MessageComponent } from './messages/message.component';
@@ -45,7 +46,8 @@ import { ErrorService } from './errors/error.service';
       FormsModule,
       routing,
       ReactiveFormsModule,
-      HttpModule
+      HttpModule,
+      HttpClientModule
     ],
     providers: [
       AuthService,

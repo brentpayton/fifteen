@@ -58,6 +58,7 @@ router.post('/signin', function(req, res, next) {
 // Retrieve details about the logged-in user.
 router.get('/current/:userId', function(req, res, next) {
   User.findOne({'_id' : req.params.userId}, 'firstName')
+  // User.findOne({'_id' : req.params.userId})
   .populate('user', 'firstName')
   .exec(function(err, user) {
     if (err) {

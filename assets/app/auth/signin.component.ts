@@ -18,13 +18,15 @@ export class SigninComponent {
 
   onSubmit() {
     const user = new User(this.myForm.value.email, this.myForm.value.password);
+    // console.log('Signin component onSubmit:  ' + JSON.stringify(user));
     this.authService.signin(user)
       .subscribe(
         data => {
-          console.log(data);
           localStorage.setItem('token', data.token);
           localStorage.setItem('userId', data.userId);
-          localStorage.setItem('firstName', data.firstName);
+          // localStorage.setItem('firstName', data.firstName);
+          // localStorage.setItem('firstName', 'Static test');
+          // console.log('Signin component onSubmit:  ' + JSON.stringify(data));
           this.router.navigateByUrl('/');
         },
         error => console.error(error)

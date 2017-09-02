@@ -10,7 +10,7 @@ import { User } from './user.model';
     providers: [AuthService]
 })
 
-export class SignupComponent {
+export class SignupComponent implements OnInit{
   myForm: FormGroup;
   user: User;
   currentUser: User;
@@ -39,25 +39,5 @@ export class SignupComponent {
           password: new FormControl(null, Validators.required)
       });
     }
-
-  // loggedInUser() {
-  //
-  //   this.authService.loggedInUser().subscribe(res => {
-  //     // console.log(res);
-  //     this.currentUser = res;
-  //     // console.log(this.currentUser);
-  //     return this.currentUser;
-  //   })
-  //
-  //   // const user = this.authService.loggedInUser();
-  //   // console.log('(Component) User:  ' + JSON.stringify(user));
-  //   // return user;
-  // }
-
-  // loggedInUser() {
-  //   const userName = localStorage.getItem('firstName') // firstName stored by onSubmit() in signin component.
-  //   // console.log ('Auth service:  ' + userName);
-  //   return userName;
-  // }
 
 }

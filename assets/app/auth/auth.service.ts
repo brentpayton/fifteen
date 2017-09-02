@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit} from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs';
@@ -7,7 +7,8 @@ import { User } from './user.model';
 import { ErrorService } from '../errors/error.service';
 
 @Injectable()
-export class AuthService{
+export class AuthService implements OnInit{
+  currentUserName: string;
 
   constructor(private http: Http, private errorService: ErrorService) {}
 
@@ -25,6 +26,7 @@ export class AuthService{
   }
 
   signin(user: User) {
+    // console.log('Auth service signin:  ' + JSON.stringify(user));
     const body = JSON.stringify(user);
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http.post('http://localhost:3000/user/signin', body, {headers: headers})
@@ -43,17 +45,30 @@ export class AuthService{
     return localStorage.getItem('token') !== null;
   }
 
+  loggedInUser() {
+    const userId = localStorage.getItem('userId');
+    console.log('(Service) User ID:  '  + userId);
+    const response = this.http.get('http://localhost:3000/user/current/' + userId);
+    console.log('(Service) Response:  ' + JSON.stringify(response));
+    return this.http
+      .get('http://localhost:3000/user/current/' + userId)
+      .map((response: Response) => {
+        const user = response.json();
+    })
+  };
+
+  ngOnInit(): void {
+    console.log('(auth.service ngOnInit) Username:  ' + this.currentUserName);
+    this.http.get('http://localhost:3000/user/current/' + localStorage.getItem('userId'))
+      .subscribe(data => {
+        this.currentUserName = data['currentUserName'];
+      })
+  };
+
   // loggedInUser() {
-  //   const userId = localStorage.getItem('userId');
-  //   console.log('(Service) User ID:  '  + userId);
-  //   const response = this.http.get('http://localhost:3000/user/current/' + userId);
-  //   console.log('(Service) Response:  ' + JSON.stringify(response));
-  //   return this.http
-  //     .get('http://localhost:3000/user/current/' + userId)
-  //     .map((response: Response) => {
-  //       const user = response.json();
-  //     return user;
-  //   })
-  // };
+  //   // this.currentUserName = 'test';
+  //   console.log ('(auth.service loggedInUser):  ' + this.currentUserName);
+  //   return this.currentUserName;
+  // }
 
 }
